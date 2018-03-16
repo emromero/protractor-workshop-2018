@@ -1,3 +1,5 @@
+import {browser} from 'protractor';
+
 describe('This is thefirst example of protractor', () => {
     describe('when open Google Page', () => {
         beforeEach(() => {
