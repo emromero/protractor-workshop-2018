@@ -1,11 +1,11 @@
-import {browser, Config} from 'protractor';
+import​ { browser, Config } from​ 'protractor';
 
-exports const config: Config = {
-    framework: 'jasmine',
-    seleniumAddress: 'http://localhost:4444/wd/hub',
-    specs: ['test/Google.spec.js'],
-    noGlobals: true,
-    onPrepare: () => {
-        browser.ignoreSynchronization = true;
-    }
-   }
+export​ const​ config: Config = {
+ framework: 'jasmine',
+ seleniumAddress: 'http://localhost:4444/wd/hub',
+ specs: ['../test/Google.spec.js'],
+ noGlobals: true​,
+ onPrepare: () => {
+ browser.ignoreSynchronization = true​;
+ }
+}
