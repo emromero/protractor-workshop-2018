@@ -1,4 +1,14 @@
-import​ { $, browser, ProtractorExpectedConditions } from​ 'protractor';
+import​ { browser } from​ 'protractor';
+import​ { MenuContentPage, AddressStepPage } from​ '../src/page';
+import​ { ProductDetailPage } from​ '../src/page';
+import​ { ProductListPage } from​ '../src/page';
+import​ { ProductAddedModalPage } from​ '../src/page';
+import​ { SummaryStepPage } from​ '../src/page';
+import​ { SignInStepPage } from​ '../src/page';
+import​ { ShippingStepPage } from​ '../src/page';
+import​ { BankPaymentPage } from​ '../src/page';
+import​ { PaymentStepPage } from​ '../src/page';
+import​ { OrderResumePage } from​ '../src/page';
 
 describe('Buy a t-shirt', () => {
  beforeEach(() => {
@@ -6,39 +16,57 @@ describe('Buy a t-shirt', () => {
  });
 
  it('then should be bought a t-shirt', async​ () => {
-    
-    const EC: ProtractorExpectedConditions = new ProtractorExpectedConditions(browser);
+
+    const​ menuContentPage: MenuContentPage = new​ MenuContentPage();
+    const​ productDetailPage: ProductDetailPage = new​ ProductDetailPage();
+    const​ productListPage: ProductListPage = new​ ProductListPage();
+    const​ productAddedModalPage: ProductAddedModalPage = new​ ProductAddedModalPage();
+    const​ summaryStepPage: SummaryStepPage = new​ SummaryStepPage();
+    const​ signInStepPage: SignInStepPage = new​ SignInStepPage();
+    const​ addressStepPage: AddressStepPage = new​ AddressStepPage();
+    const​ shippingStepPage: ShippingStepPage = new​ ShippingStepPage();
+    const​ bankPaymentPage: BankPaymentPage = new​ BankPaymentPage();
+    const​ paymentStepPage: PaymentStepPage = new​ PaymentStepPage();
+    const​ orderResumePage: OrderResumePage = new​ OrderResumePage();
 
     await​ browser.get('http://automationpractice.com/');
     await​(browser.sleep(10000));
-    await​ $('#block_top_menu > ul > li:nth-child(3) > a').click();
+
+    await​ menuContentPage.goToTShirtMenu();
     await​(browser.sleep(3000));
-    await $('#center_column > ul > li > div > div.left-block > div > a.product_img_link > img').click();
+
+    await productDetailPage.goToProductDetail();
     await​(browser.sleep(3000));
-        let button = $('#add_to_cart > button > span');
-        await browser.wait(EC.elementToBeClickable(button));
-        await​ button.click();
+
+    await productListPage.goToAddToCart();
     await​(browser.sleep(3000));
-    await​ $('[style*="display: block;"] .button-container > a').click();
+
+    await​ productAddedModalPage.goToProceedToCheckout();
     await​(browser.sleep(3000));
-    await​ $('.cart_navigation span').click();
+    
+    await​ summaryStepPage.goToProceedToCheckout();
+    await​(browser.sleep(3000)); 
+
+    await signInStepPage.goToSetEmail();
+    await signInStepPage.goToSetPassword();
+    await​ signInStepPage.goToSignIn();
     await​(browser.sleep(3000));
-    await​ $('#email').sendKeys('aperdomobo@gmail.com');
-    await​ $('#passwd').sendKeys('WorkshopProtractor');
-    await​ $('#SubmitLogin > span').click();
+
+    await​ addressStepPage.goToProceedToCheckout();
     await​(browser.sleep(3000));
-    await​ $('#center_column > form > p > button > span').click();
+
+    await​ shippingStepPage.goToiAgreeTerms();
     await​(browser.sleep(3000));
-    await​ $('#cgv').click();
+    await​ shippingStepPage.goToProceedToCheckout();
     await​(browser.sleep(3000));
-    await​ $('#form > p > button > span').click();
+
+    await bankPaymentPage.goToBankPayment();
     await​(browser.sleep(3000));
-    await​ $('#HOOK_PAYMENT > div:nth-child(1) > div > p > a').click();
+    await​ paymentStepPage.goToConfirmMyOrder();
     await​(browser.sleep(3000));
-    await​ $('#cart_navigation > button > span').click();
-    await​(browser.sleep(3000));
-    await​ expect($('#center_column > div > p > strong').getText())
-    .toBe('Your order on My Store is complete.');
+    
+    await expect(orderResumePage.goToOrderResumePage()).toBe('Your order on My Store is complete.');
+
+    
     });
    });
-   
