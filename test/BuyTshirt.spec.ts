@@ -11,9 +11,6 @@ import​ { PaymentStepPage } from​ '../src/page';
 import​ { OrderResumePage } from​ '../src/page';
 
 describe('Buy a t-shirt', () => {
- beforeEach(() => {
- jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000;
- });
 
  it('then should be bought a t-shirt', async​ () => {
 
@@ -30,7 +27,6 @@ describe('Buy a t-shirt', () => {
     const​ orderResumePage: OrderResumePage = new​ OrderResumePage();
 
     await​ browser.get('http://automationpractice.com/');
-    await​(browser.sleep(10000));
 
     await​ menuContentPage.goToTShirtMenu();
     await​(browser.sleep(3000));
