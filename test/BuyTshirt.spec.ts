@@ -1,4 +1,4 @@
-import​ { browser } from​ 'protractor';
+import​ { browser} from​ 'protractor';
 import​ { MenuContentPage, AddressStepPage } from​ '../src/page';
 import​ { ProductDetailPage } from​ '../src/page';
 import​ { ProductListPage } from​ '../src/page';
@@ -14,6 +14,8 @@ describe('Buy a t-shirt', () => {
 
  it('then should be bought a t-shirt', async​ () => {
 
+    //const EC = ExpectedConditions;//Declarar espera explicita
+
     const​ menuContentPage: MenuContentPage = new​ MenuContentPage();
     const​ productDetailPage: ProductDetailPage = new​ ProductDetailPage();
     const​ productListPage: ProductListPage = new​ ProductListPage();
@@ -28,13 +30,19 @@ describe('Buy a t-shirt', () => {
 
     await​ browser.get('http://automationpractice.com/');
 
-    await​ menuContentPage.goToTShirtMenu();
+    /*const menuCP = menuContentPage.goToTShirtMenu();//Obtener el Elemento html
+    let isClickable = EC.elementToBeClickable(menuCP);//Esperar hasta que el elemento este disponible para ser clickeado
+    browser.wait(isClickable, 5000); //wait for condition isClickable to be true.
+    menuCP.click(); //Click sobre el elemento html*/
+    
+    await menuContentPage.goToTShirtMenu();
 
     await productDetailPage.goToProductDetail();
-
+    browser.sleep(5000);
     await productListPage.goToAddToCart();
-
+    browser.sleep(5000);
     await​ productAddedModalPage.goToProceedToCheckout();
+
     
     await​ summaryStepPage.goToProceedToCheckout();
 
