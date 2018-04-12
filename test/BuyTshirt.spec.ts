@@ -38,10 +38,11 @@ describe('Buy a t-shirt', () => {
     await menuContentPage.goToTShirtMenu();
 
     await productDetailPage.goToProductDetail();
-
+    browser.sleep(5000);
     await productListPage.goToAddToCart();
-
+    browser.sleep(5000);
     await​ productAddedModalPage.goToProceedToCheckout();
+
     
     await​ summaryStepPage.goToProceedToCheckout();
 
